@@ -12,3 +12,4 @@ For personal documentation:
 - Handle complex user input, ex. mouse point and click using RayCast, selection of certain objects only.
 - Singleton design pattern.
 - More Testing skills.
+- Usage of Cinemachines.
