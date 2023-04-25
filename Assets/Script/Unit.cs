@@ -5,11 +5,16 @@ using UnityEngine;
 public class Unit : MonoBehaviour
 {
     private GridPosition gridPosition;
+
     private MoveAction moveAction;
+
+    private SpinAction spinAction;
+    
 
     void Awake()
     {
         moveAction = GetComponent<MoveAction>();
+        spinAction = GetComponent<SpinAction>();
     }
     void Start()
     {
@@ -37,5 +42,10 @@ public class Unit : MonoBehaviour
     public GridPosition GetGridPosition()
     {
         return gridPosition;
+    }
+
+    public SpinAction GetSpinAction()
+    {
+        return spinAction;
     }
 }

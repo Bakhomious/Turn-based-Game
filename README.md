@@ -13,3 +13,6 @@ For personal documentation:
 - Singleton design pattern.
 - More Testing skills.
 - Usage of Cinemachines.
+- Delegates in C#
+- Abstraction in C#
+
