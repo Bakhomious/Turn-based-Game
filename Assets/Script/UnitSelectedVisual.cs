@@ -17,7 +17,7 @@ public class UnitSelectedVisual : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UnitActionSystem.Instance.OnSelectedUnitChange += UnitActionSystem_OnSelectedUnitChange;
+        UnitActionSystem.Instance.OnSelectedUnitChanged += UnitActionSystem_OnSelectedUnitChanged;
 
         UpdateVisual();
     }
@@ -28,7 +28,7 @@ public class UnitSelectedVisual : MonoBehaviour
         
     }
 
-    private void UnitActionSystem_OnSelectedUnitChange(object sender, EventArgs empty)
+    private void UnitActionSystem_OnSelectedUnitChanged(object sender, EventArgs empty)
     {
         UpdateVisual();
     }

@@ -8,7 +8,9 @@ public class UnitActionSystem : MonoBehaviour
 {
     // Creating a singleton
     public static UnitActionSystem Instance { get; private set; }
-    public event EventHandler OnSelectedUnitChange;
+    public event EventHandler OnSelectedUnitChanged;
+    public event EventHandler OnSelectedActionChanged;
+    public event EventHandler<bool> OnBusyChanged;
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
     private BaseAction selectedAction;
@@ -65,11 +67,13 @@ public class UnitActionSystem : MonoBehaviour
     private void SetBusy()
     {
         isBusy = true;
+        OnBusyChanged?.Invoke(this, isBusy);
     }
 
     private void ClearBusy()
     {
         isBusy = false;
+        OnBusyChanged?.Invoke(this, isBusy);
     } 
 
     private bool TryHandleUnitSelection()
@@ -100,7 +104,7 @@ public class UnitActionSystem : MonoBehaviour
         SetSelectedAction(unit.GetMoveAction());
 
         // Checking for event subscribers, i.e UnitSelectedVisual
-        OnSelectedUnitChange?.Invoke(this, EventArgs.Empty);
+        OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public Unit GetSelectedUnit()
@@ -111,6 +115,7 @@ public class UnitActionSystem : MonoBehaviour
     public void SetSelectedAction(BaseAction baseAction)
     {
         selectedAction = baseAction;
+        OnSelectedActionChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public BaseAction GetSelectedAction()
