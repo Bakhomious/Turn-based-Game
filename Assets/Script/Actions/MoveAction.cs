@@ -35,8 +35,7 @@ public class MoveAction : BaseAction
         else
         {
             unitAnimator.SetBool("isWalking", false);
-            isActive = false;
-            onActionComplete();
+            ActionComplete();
         }
 
         // Handle rotation
@@ -46,9 +45,8 @@ public class MoveAction : BaseAction
 
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.onActionComplete = onActionComplete;
+        ActionStart(onActionComplete);
         this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
-        isActive = true;
     }
 
     public override List<GridPosition> GetValidActionGridPositionList()

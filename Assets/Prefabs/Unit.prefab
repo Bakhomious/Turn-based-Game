@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2902489634151584130}
   - component: {fileID: -1529374251728668754}
   - component: {fileID: 6234955203989573202}
+  - component: {fileID: -8417860689931763475}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1452dc1a6970746b78931c08f920fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
 --- !u!65 &2902489634151584130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -86,6 +88,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d605842b61849074dabeb6484c2bcc8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-8417860689931763475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 20329100372821603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec23c9d5e7042914db2edae2cf9c6413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9149893250834028553
