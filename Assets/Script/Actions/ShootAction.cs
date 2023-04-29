@@ -16,6 +16,13 @@ public class ShootAction : BaseAction
     private float stateTimer;
     private Unit targetUnit;
     private bool canShootBullet;
+    public EventHandler<OnShootEventArgs> OnShoot;
+
+    public class OnShootEventArgs : EventArgs
+    {
+        public Unit targetUnit;
+        public Unit shooterUnit;
+    }
 
     void Update()
     {
@@ -31,7 +38,7 @@ public class ShootAction : BaseAction
             case State.Aiming:
                 Vector3 aimDir = (targetUnit.GetWorldPosition() - unit.GetWorldPosition()).normalized;
                 float rotateSpeed = 10f;
-            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
+                transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
                 break;
             case State.Shooting:
             if (canShootBullet)
@@ -73,6 +80,10 @@ public class ShootAction : BaseAction
     private void Shoot()
     {
         targetUnit.Damage();
+        OnShoot?.Invoke(this, new OnShootEventArgs { 
+            targetUnit = targetUnit,
+            shooterUnit = unit 
+        });
     }
 
     public override string GetActionName()
