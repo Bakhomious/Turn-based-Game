@@ -15,4 +15,6 @@ For personal documentation:
 - Usage of Cinemachines.
 - Delegates in C#
 - Abstraction in C#
-
+- Events in Unity
+- State Machines in C#
+- Ragdoll
