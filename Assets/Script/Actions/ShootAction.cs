@@ -18,6 +18,8 @@ public class ShootAction : BaseAction
     private Unit targetUnit;
     private bool canShootBullet;
     public EventHandler<OnShootEventArgs> OnShoot;
+    public static EventHandler<OnShootEventArgs> OnAnyShoot;
+
 
     public class OnShootEventArgs : EventArgs
     {
@@ -80,12 +82,19 @@ public class ShootAction : BaseAction
 
     private void Shoot()
     {
-        targetUnit.Damage(40);
+        OnAnyShoot?.Invoke(this, new OnShootEventArgs
+        {
+            targetUnit = targetUnit,
+            shooterUnit = unit
+        });
+
         OnShoot?.Invoke(this, new OnShootEventArgs
         {
             targetUnit = targetUnit,
             shooterUnit = unit
         });
+
+        targetUnit.Damage(40);
     }
 
     public override string GetActionName()
@@ -140,7 +149,7 @@ public class ShootAction : BaseAction
 
                 Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
                 Vector3 shootDir = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
-                
+
                 if (Physics.Raycast(
                         unitWorldPosition + Vector3.up * unitShoulderHeight,
                         shootDir,
