@@ -35,7 +35,6 @@ public class GridSystem<TGridObject>
         return new Vector3(gridPosition.x, 0, gridPosition.z) * cellSize;
     }
 
-
     public GridPosition GetGridPosition(Vector3 worldPosition)
     {
         return new GridPosition(
@@ -43,7 +42,6 @@ public class GridSystem<TGridObject>
             Mathf.RoundToInt(worldPosition.z / cellSize)
         );
     }
-
 
     public void CreateDebugObjects(Transform debugPrefab)
     {
@@ -55,12 +53,11 @@ public class GridSystem<TGridObject>
 
                 Transform debugTransform = GameObject.Instantiate(debugPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
                 GridDebugObject gridDebugObject = debugTransform.GetComponent<GridDebugObject>();
-                gridDebugObject.SetGridObject(GetGridObject(gridPosition) as GridObject);
+                gridDebugObject.SetGridObject(GetGridObject(gridPosition));
             }
         }
     }
     
-
     public TGridObject GetGridObject(GridPosition gridPosition)
     {
         return gridObjectArray[gridPosition.x, gridPosition.z];
