@@ -18,3 +18,5 @@ For personal documentation:
 - Events in Unity
 - State Machines in C#
 - Ragdoll
+- Using AI for enemies
+- Generics in C#

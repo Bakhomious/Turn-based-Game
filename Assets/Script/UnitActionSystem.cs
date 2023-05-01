@@ -118,7 +118,7 @@ public class UnitActionSystem : MonoBehaviour
     private void SetSelectedUnit(Unit unit)
     {
         selectedUnit = unit;
-        SetSelectedAction(unit.GetMoveAction());
+        SetSelectedAction(unit.GetAction<MoveAction>());
 
         // Checking for event subscribers, i.e UnitSelectedVisual
         OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
