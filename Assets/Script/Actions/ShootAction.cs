@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ShootAction : BaseAction
 {
+    [SerializeField] private LayerMask obstacleLayerMask;
     private enum State
     {
         Aiming,
@@ -41,8 +42,8 @@ public class ShootAction : BaseAction
                 transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotateSpeed);
                 break;
             case State.Shooting:
-            if (canShootBullet)
-            {
+                if (canShootBullet)
+                {
                     Shoot();
                     canShootBullet = false;
                 }
@@ -80,9 +81,10 @@ public class ShootAction : BaseAction
     private void Shoot()
     {
         targetUnit.Damage(40);
-        OnShoot?.Invoke(this, new OnShootEventArgs { 
+        OnShoot?.Invoke(this, new OnShootEventArgs
+        {
             targetUnit = targetUnit,
-            shooterUnit = unit 
+            shooterUnit = unit
         });
     }
 
@@ -134,6 +136,21 @@ public class ShootAction : BaseAction
                     continue;
                 }
 
+                float unitShoulderHeight = 1.7f;
+
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDir = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+                
+                if (Physics.Raycast(
+                        unitWorldPosition + Vector3.up * unitShoulderHeight,
+                        shootDir,
+                        Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
+                        obstacleLayerMask))
+                {
+                    // blocked by obstacle
+                    continue;
+                }
+
                 validGridPositions.Add(testGridPosition);
             }
         }
@@ -173,7 +190,7 @@ public class ShootAction : BaseAction
         {
             gridPosition = gridPosition,
             actionValue = 100 + Mathf.RoundToInt((1 - targetUnit.GetHealthNormalized()) * 100f)
-    };
+        };
     }
 
     public int GetTargetCountAtPosition(GridPosition gridPosition)
