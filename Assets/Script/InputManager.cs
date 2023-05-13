@@ -29,25 +29,27 @@ public class InputManager : MonoBehaviour
 
     public Vector2 GetCameraMoveVector()
     {
-        Vector2 inputMoveDirection = new Vector2(0, 0);
+        Vector2 inputMoveDir = new Vector2(0, 0);
+
         if (Input.GetKey(KeyCode.W))
         {
-            inputMoveDirection.y = +1f;
+            inputMoveDir.y = +1f;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            inputMoveDirection.y = -1f;
+            inputMoveDir.y = -1f;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            inputMoveDirection.x = -1f;
+            inputMoveDir.x = -1f;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            inputMoveDirection.x = +1f;
+            inputMoveDir.x = +1f;
         }
 
-        return inputMoveDirection;
+        return inputMoveDir;
+
     }
 
     public float GetCameraRotateAmount()
