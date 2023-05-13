@@ -29,7 +29,7 @@ For personal documentation:
 
 ## To-Do
 
-[ ] Level Design and Scripting
-[ ] Healing Intractable
-[ ] Achievements from every room
-[ ] Game Over Logic
+- [ ] Level Design and Scripting
+- [ ] Healing Intractable
+- [ ] Achievements from every room
+- [ ] Game Over Logic
