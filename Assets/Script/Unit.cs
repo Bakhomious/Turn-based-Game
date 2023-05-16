@@ -42,6 +42,7 @@ public class Unit : MonoBehaviour
             gridPosition = newGridPosition;
             LevelGrid.Instance.UnitMovedGridPosition(this, oldGridPosition, newGridPosition);
         }
+
     }
 
     public T GetAction<T>() where T : BaseAction

@@ -19,6 +19,12 @@ public class ShootAction : BaseAction
     private bool canShootBullet;
     public EventHandler<OnShootEventArgs> OnShoot;
     public static EventHandler<OnShootEventArgs> OnAnyShoot;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip shootAudioClip;
+
+    void Start() {
+        audioSource = GetComponent<AudioSource>();
+    }
 
 
     public class OnShootEventArgs : EventArgs
@@ -94,6 +100,7 @@ public class ShootAction : BaseAction
             shooterUnit = unit
         });
 
+        audioSource.PlayOneShot(shootAudioClip);
         targetUnit.Damage(20);
     }
 
@@ -175,7 +182,6 @@ public class ShootAction : BaseAction
         state = State.Aiming;
         float aimingStateTime = 1f;
         stateTimer = aimingStateTime;
-
         canShootBullet = true;
 
         ActionStart(onActionComplete);

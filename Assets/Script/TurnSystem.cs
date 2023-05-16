@@ -18,6 +18,7 @@ public class TurnSystem : MonoBehaviour
             return;
         }
         Instance = this;
+        Unit.OnAnyActionPointsChanged += Unit_OnAnyActionPointsChanged;
     }
     public void NextTurn()
     {
@@ -34,5 +35,25 @@ public class TurnSystem : MonoBehaviour
     public bool IsPlayerTurn()
     {
         return isPlayerTurn;
+    }
+
+    private void Unit_OnAnyActionPointsChanged (object sender, EventArgs e)
+    {
+        int unitCount = UnitManager.Instance.GetFriendlyUnitList().Count;
+        foreach (Unit unit in UnitManager.Instance.GetFriendlyUnitList())
+        {
+            if (unit.GetActionPoints() == 0)
+            {
+                unitCount--;
+            }
+            Debug.Log("Unit: " + unit.name + " AP: " + unit.GetActionPoints());
+        }
+
+        if (unitCount == 0 && isPlayerTurn)
+        {
+            NextTurn();
+        }
+
+        Debug.Log("Unit count: " + unitCount);
     }
 }

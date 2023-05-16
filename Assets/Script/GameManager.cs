@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class GameManager : MonoBehaviour
 {
     private int enemiesCount = 0;
     private int playerUnitCount = 0;
 
-    [SerializeField] private TextMeshProUGUI gameOverText; 
+    [SerializeField] private TextMeshProUGUI gameOverText;
+    [SerializeField] private GameObject inputManager;
 
     // Start is called before the first frame update
     void Start()
@@ -51,5 +53,6 @@ public class GameManager : MonoBehaviour
     {
         gameOverText.text = text;
         gameOverText.gameObject.SetActive(true);
+        inputManager.SetActive(false);
     }
 }

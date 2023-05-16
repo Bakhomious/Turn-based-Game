@@ -30,6 +30,7 @@ public class UnitManager : MonoBehaviour
         Unit.OnAnyUnitSpawned += Unit_OnAnyUnitSpawned;
         Unit.OnAnyUnitDead += Unit_OnAnyUnitDead;
     }
+    
 
     private void Unit_OnAnyUnitSpawned(object sender, EventArgs e)
     {
